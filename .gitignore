@@ -1,0 +1,7 @@
+/ants
+/ants-headless
+/ants_tests
+build*/
+frames/
+*.ppm
+__pycache__/
