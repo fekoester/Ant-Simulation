@@ -18,12 +18,7 @@ def main() -> None:
     paths = sorted(glob.glob(os.path.join(args.frames, "frame_*.ppm")))
     if not paths:
         raise SystemExit(f"no frames in {args.frames}")
-    frames = [
-        Image.open(p)
-        .convert("RGB")
-        .quantize(colors=args.colors, method=Image.Quantize.MEDIANCUT)
-        for p in paths
-    ]
+    frames = [Image.open(p).convert("RGB").quantize(colors=args.colors, method=Image.Quantize.MEDIANCUT) for p in paths]
     frames[0].save(
         args.out,
         save_all=True,

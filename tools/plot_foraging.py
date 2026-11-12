@@ -28,15 +28,11 @@ def main() -> None:
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.2))
     for mode, rs in sorted(runs.items()):
         steps = rs[0]["step"]
-        for ax, key, title in zip(
-            axes, ["delivered", "ants"], ["food delivered", "ants"], strict=True
-        ):
+        for ax, key, title in zip(axes, ["delivered", "ants"], ["food delivered", "ants"], strict=True):
             mean = [sum(r[key][i] for r in rs) / len(rs) for i in range(len(steps))]
             lo = [min(r[key][i] for r in rs) for i in range(len(steps))]
             hi = [max(r[key][i] for r in rs) for i in range(len(steps))]
-            (line,) = ax.plot(
-                steps, mean, label=f"{labels.get(mode, mode)} (mean of {len(rs)})"
-            )
+            (line,) = ax.plot(steps, mean, label=f"{labels.get(mode, mode)} (mean of {len(rs)})")
             ax.fill_between(steps, lo, hi, color=line.get_color(), alpha=0.2)
             ax.set_title(title)
             ax.set_xlabel("step")
